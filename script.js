@@ -199,14 +199,13 @@ function showResult() {
     }
 }
 
-var timeleft = 60;
-var downloadTimer = setInterval(function(){
-  if(timeleft <= 0){
-    clearInterval(downloadTimer);
-    document.getElementById("countdown").innerHTML = "Il tempo è terminato";
-    showResult();
-  }
-  document.getElementById("progressBar").value = 60 - timeleft;
-  document.getElementById("countdown").innerHTML = timeleft + " secondi rimanenti";
-  timeleft -= 1;
-}, 1000);
+var userLang = document.getElementsByTagName("html")[0].getAttribute("lang");
+if(userLang == "en"){
+    if (confirm('This website is for destinated to italian users. Do you want to get a live translated version?')) {
+        window.open('https://ferrucogo-github-io.translate.goog/OpenTriviaAPI/?_x_tr_sl=en&_x_tr_tl=it&_x_tr_hl=it&_x_tr_pto=wapp');
+      } else {
+        // Do nothing!
+        console.log('Nothing.');
+      }
+}
+
