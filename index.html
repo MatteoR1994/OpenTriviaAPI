@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Quizzone</title>
+</head>
+<body>
+    <center>
+        <h1 class="main-title">Piano della conquista del mondo</h1>
+        <h2 class="main-subtitle">Da non rivelare a nessuno ! grazie per la collaborazione. Hai 60 secondi per terminare questo quiz.
+            <br>
+            <progress value="0" max="60" id="progressBar"></progress>
+            <div id="countdown"></div>
+        </h2>
+       
+        <div id="question-container">
+        </div>
+
+        <div id="myModal" class="modal">
+            <div id="modal-content" class="modal-content">
+                <span class="close">&times;</span>
+                <img id="image-result" width="250" src="./images/sad-face.png" alt="">
+            </div>
+        
+        </div>
+    </center>
+</body>
+<script src="./utility.js" charset="UTF-8"></script>
+<script src="./trivia.js" charset="UTF-8"></script>
+<script src="./script.js" charset="UTF-8"></script>
+<script>
+    loadTrivia();
+</script>
+</html>
