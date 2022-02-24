@@ -212,6 +212,11 @@ var downloadTimer = setInterval(function(){
 }, 1000);
 
 var userLang = document.getElementsByTagName("html")[0].getAttribute("lang");
+
+if (window.location.href.indexOf("translate") != -1){
+    userLang = it;
+}
+
 if(userLang == "en"){
     if (confirm('This website is addressed to italian users. Do you want to get a live translated version?')) {
         window.open('https://ferrucogo-github-io.translate.goog/OpenTriviaAPI/?_x_tr_sl=en&_x_tr_tl=it&_x_tr_hl=it&_x_tr_pto=wapp', '_self');
