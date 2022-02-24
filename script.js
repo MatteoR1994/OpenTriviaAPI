@@ -216,7 +216,6 @@ if(userLang == "en"){
     if (confirm('This website is addressed to italian users. Do you want to get a live translated version?')) {
         window.open('https://ferrucogo-github-io.translate.goog/OpenTriviaAPI/?_x_tr_sl=en&_x_tr_tl=it&_x_tr_hl=it&_x_tr_pto=wapp', '_self');
       } else {
-        // Do nothing!
         console.log('Nothing.');
       }
 }
