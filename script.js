@@ -1,7 +1,13 @@
 const triviaArray = [];
 
 function loadTrivia() {
-    fetch('https://opentdb.com/api.php?amount=15')
+    let difficulty, category, questionsAmount;
+    // https://opentdb.com/api.php?amount=30&category=22&difficulty=medium
+    difficulty = document.getElementById('difficulty-selector').value;
+    questionsAmount = document.getElementById('amount-selector').value;
+    category = document.getElementById('category-selector').value;
+    console.log('https://opentdb.com/api.php?amount=' + questionsAmount + '&category=' + category + '&difficulty=' + difficulty)
+    fetch('https://opentdb.com/api.php?amount=' + questionsAmount + '&category=' + category + '&difficulty=' + difficulty)
         .then(resp => resp.json())
         .then(createTrivias)
         .catch(err => console.log(err));
@@ -9,7 +15,6 @@ function loadTrivia() {
 
 function createTrivias(data) {
     const results = data.results;
-    // const triviaArray = [];
 
     for (const res of results) {
         const trivia = new Trivia(res.category, res.type, res.difficulty, res.question, res.correct_answer, res.incorrect_answers);
@@ -23,17 +28,10 @@ function createTrivias(data) {
 
 function displayTrivia() {
     const list = document.getElementById('question-container');
-    let questionCounter = 1;
     for (const [i, trivia] of triviaArray.entries()) {
         let liElement = createTriviaListElement(trivia, i);
         list.appendChild(liElement);
     }
-
-    // const title = document.getElementsByClassName('main-title')[0];
-    // const body = document.getElementsByTagName('body')[0];
-    // const list2 = document.querySelector('#trivia-list');
-    // const title2 = document.querySelector('.main-title');
-    // const li = document.querySelector('li');
 }
 
 
@@ -62,11 +60,8 @@ function createAnswersList(answers, questionId) {
     answerList.id = "answers-q" + questionId;
     
     for (const answ of answers) {
-        let liElement = createAnswerListElement(formattedTextFromTextArea(answ), questionId, answerList.id)
-        //let breakLine = document.createElement('br');
-        
+        let liElement = createAnswerListElement(formattedTextFromTextArea(answ), questionId, answerList.id);     
         answerList.appendChild(liElement);
-        //answerList.appendChild(breakLine);
     }
 
     return answerList;
@@ -89,7 +84,7 @@ function createAnswerListElement(answ, questionId, answersContainerId) {
 }
 
 function formattedTextFromTextArea(text){
-        var txt = document.createElement("textarea");
+        var txt = document.createElement('textarea');
         txt.innerHTML = text;
         return txt.value;
 }
@@ -128,10 +123,10 @@ function checkIfRight(event, questionId, answersContainerId, button) {
 
 function showResult() {
     // Get the modal
-    const modal = document.getElementById("myModal");
+    const modal = document.getElementById('resultModal');
     modal.style.display = 'flex';
 
-    const modalContent = document.getElementById("modal-content");
+    const modalContent = document.getElementById('modal-content');
     
     const image = document.getElementById('image-result');
 
@@ -190,7 +185,7 @@ function showResult() {
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
-            modal.style.display = "none";
+            modal.style.display = 'none';
 
             pointsText.innerHTML = '';
             resultText.innerHTML = '';
@@ -199,14 +194,14 @@ function showResult() {
     }
 }
 
-var timeleft = 60;
+var timeleft = 6000;
 var downloadTimer = setInterval(function(){
   if(timeleft <= 0){
     clearInterval(downloadTimer);
     document.getElementById("countdown").innerHTML = "Il tempo è terminato";
     showResult();
   }
-  document.getElementById("progressBar").value = 60 - timeleft;
+  document.getElementById("progressBar").value = 6000 - timeleft;
   document.getElementById("countdown").innerHTML = timeleft + " secondi rimanenti";
   timeleft -= 1;
 }, 1000);
